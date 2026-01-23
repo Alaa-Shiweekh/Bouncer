@@ -6,16 +6,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currencyOptions.forEach(option => {
         option.addEventListener("click", function (event) {
-            event.preventDefault(); // منع السلوك الافتراضي للرابط
-            const selectedValue = this.getAttribute("data-value"); // الحصول على القيمة المحددة
-            selectedCurrency.textContent = selectedValue; // تحديث النص في العنصر
+            event.preventDefault(); 
+            const selectedValue = this.getAttribute("data-value")
+            selectedCurrency.textContent = selectedValue;  
         });
     });
     LangOptions.forEach(option => {
         option.addEventListener("click", function (event) {
-            event.preventDefault(); // منع السلوك الافتراضي للرابط
-            const selectedValue = this.getAttribute("data-value"); // الحصول على القيمة المحددة
-            selectedLang.textContent = selectedValue; // تحديث النص في العنصر
+            event.preventDefault();  
+            const selectedValue = this.getAttribute("data-value"); 
+            selectedLang.textContent = selectedValue;   
         });
     });
     let defaultColor = document.querySelector('.color-box input:checked');
@@ -62,8 +62,8 @@ document.addEventListener("DOMContentLoaded", function () {
             setupPagination(currentProducts);
             renderProducts(1);
         } catch (error) {
-            console.error("فشل تحميل المنتجات:", error);
-            productsContainer.innerHTML = "<p>حدث خطأ أثناء تحميل المنتجات.</p>";
+            console.error("Failed to load products:", error);
+            productsContainer.innerHTML = "<p>Failed to load products.</p>";
         }
     }
 
@@ -74,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const paginatedProducts = currentProducts.slice(startIndex, endIndex);
 
         if (paginatedProducts.length === 0) {
-            productsContainer.innerHTML = "<p>لا توجد منتجات متاحة.</p>";
-            paginationContainer.style.display = "none"; // إخفاء الـ pagination
+            productsContainer.innerHTML = "<p>no products available.</p>";
+            paginationContainer.style.display = "none"; 
             return;
         }
 
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             productsContainer.innerHTML += productCard;
         });
 
-        paginationContainer.style.display = "flex"; // إظهار الـ pagination عند وجود منتجات
+        paginationContainer.style.display = "flex"; 
     }
 
     function setupPagination(products) {
@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const totalPages = Math.ceil(products.length / productsPerPage);
         
         if (totalPages <= 1) {
-            paginationContainer.style.display = "none"; // إخفاء الـ pagination
-            paginationContainer.style.background = "none"; // إخفاء الخلفية
+            paginationContainer.style.display = "none"; 
+            paginationContainer.style.background = "none";  
             return;
         }
 
@@ -139,8 +139,8 @@ document.addEventListener("DOMContentLoaded", function () {
             paginationContainer.appendChild(pageElement);
         }
 
-        paginationContainer.style.display = "flex"; // إظهار الـ pagination عند وجود أكثر من صفحة
-        paginationContainer.style.background = ""; // إعادة تعيين الخلفية
+        paginationContainer.style.display = "flex"; 
+        paginationContainer.style.background = ""; 
     }
 
     function setActiveCategory(category) {
@@ -217,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.target.closest(".add-to-wishlist")) {
             const icon = event.target.closest(".add-to-wishlist").querySelector(".icon");
 
-            // إضافة أو إزالة الكلاس "active" فقط على الأيقونة
             icon.classList.toggle("active");
 
             const card = event.target.closest(".card");
@@ -244,11 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const response = await fetch(url);
             currentProducts = await response.json();
-            updateItemCount(currentProducts.length); // تحديث العدد
+            updateItemCount(currentProducts.length);  
             setupPagination(currentProducts);
             renderProducts(1);
         } catch (error) {
-            console.error("فشل تحميل المنتجات:", error);
+            console.error("Failed to load products:", error);
         }
     }
     document.getElementById("sortSelect").addEventListener("change", function () {
@@ -267,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateCategoryName(category) {
         const categoryNameElement = document.getElementById("category-name");
         if (categoryNameElement) {
-            let categoryName = "Products"; // القيمة الافتراضية
+            let categoryName = "Products"; 
     
             if (category === "electronics") {
                 categoryName = "Electronics";
@@ -278,16 +277,16 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (category === "women's clothing") {
                 categoryName = "Women's Clothing";
             }
-            // يمكنك إضافة المزيد من الشروط للأقسام الأخرى
     
-            categoryNameElement.textContent = categoryName; // تحديث النص
+            categoryNameElement.textContent = categoryName;   
         }
     }
 
     const urlParams = new URLSearchParams(window.location.search);
-    let category = urlParams.get("category") || "all"; // قراءة الفئة من الرابط
+    let category = urlParams.get("category") || "all";     
     updateCategoryName(category);
     fetchProducts(category);
     setActiveCategory(category);
     updateCartCount(); 
+
 });
