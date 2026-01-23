@@ -1,7 +1,7 @@
 document.querySelectorAll('a.link').forEach(link => {
     link.addEventListener('click', function (event) {
         if (this.getAttribute("href") === "#") {
-            event.preventDefault(); // منع التنقل فقط إذا كان الرابط لا يشير إلى صفحة حقيقية
+            event.preventDefault();
         }
         document.querySelectorAll('a.link').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
@@ -16,16 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     currencyOptions.forEach(option => {
         option.addEventListener("click", function (event) {
-            event.preventDefault(); // منع السلوك الافتراضي للرابط
-            const selectedValue = this.getAttribute("data-value"); // الحصول على القيمة المحددة
-            selectedCurrency.textContent = selectedValue; // تحديث النص في العنصر
+            event.preventDefault(); 
+            const selectedValue = this.getAttribute("data-value"); 
+            selectedCurrency.textContent = selectedValue; 
         });
     });
     LangOptions.forEach(option => {
         option.addEventListener("click", function (event) {
-            event.preventDefault(); // منع السلوك الافتراضي للرابط
-            const selectedValue = this.getAttribute("data-value"); // الحصول على القيمة المحددة
-            selectedLang.textContent = selectedValue; // تحديث النص في العنصر
+            event.preventDefault();
+            const selectedValue = this.getAttribute("data-value"); 
+            selectedLang.textContent = selectedValue; 
         });
     });
     let cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const totalPriceElement = document.getElementById("total-price");
     const subtotalElement = document.getElementById("subtotal-price");
     const cartCount = document.querySelector(".cart-count");
-    const shippingFee = 20; // رسوم الشحن الثابتة
+    const shippingFee = 20; 
 
     function updateCart() {
         cartContainer.innerHTML = `
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <th>Quantity</th>
                 <th>Unit Price</th>
             </tr>
-        `; // إعادة إضافة رؤوس الأعمدة في كل تحديث
+        `;  
 
         let subtotal = 0;
 
@@ -87,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         </div>
                     </div>
                 </td>
-                <td>$${(price * quantity).toFixed(2)}</td> <!-- السعر الإجمالي -->
+                <td>$${(price * quantity).toFixed(2)}</td> 
                 <td class="n">
                     <button class="sp1" onclick="updateQuantity(${index}, -1)" style="border:none;background:none;color:#33A0FF">-</button>
                     <span style="color:black" id="quantity-${index}">${quantity}</span>
                     <button class="sp2" onclick="updateQuantity(${index}, 1)" style="border:none;background:none;color:#33A0FF">+</button>
                 </td>
-                <td>$${price.toFixed(2)}</td> <!-- السعر للوحدة -->
+                <td>$${price.toFixed(2)}</td>
             `;
             cartContainer.appendChild(row);
         });
@@ -139,35 +139,32 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     function updateCartTotal() {
         let subtotal = 0;
-        let shippingFee = 20; // رسوم الشحن ثابتة
+        let shippingFee = 20; 
     
-        // تحديد جميع الصفوف في جدول المنتجات
         let rows = document.querySelectorAll(".cart table tr");
     
         rows.forEach((row, index) => {
-            if (index === 0) return; // تخطي صف العناوين
+            if (index === 0) return; 
     
-            let priceElement = row.querySelector("td:nth-child(3)"); // عمود السعر
-            let qtyElement = row.querySelector("td:nth-child(4) span:nth-child(2)"); // الكمية
-            let unitPriceElement = row.querySelector("td:nth-child(5)"); // السعر للوحدة
+            let priceElement = row.querySelector("td:nth-child(3)");   
+            let qtyElement = row.querySelector("td:nth-child(4) span:nth-child(2)");  
+            let unitPriceElement = row.querySelector("td:nth-child(5)");   
     
             if (priceElement && qtyElement && unitPriceElement) {
                 let price = parseFloat(priceElement.textContent.replace("$", "")) || 0;
                 let qty = parseInt(qtyElement.textContent) || 0;
-                let unitPrice = price / qty; // حساب السعر للوحدة
+                let unitPrice = price / qty;    
     
                 unitPriceElement.textContent = `$${unitPrice.toFixed(2)}`;
                 subtotal += price;
             }
         });
     
-        // تحديث القيم في HTML
         document.getElementById("subtotal-price").textContent = `$${subtotal.toFixed(2)}`;
         let total = subtotal + shippingFee;
         document.getElementById("total-price").textContent = `$${total.toFixed(2)}`;
     }
     
-    // تحديث عند تغيير الكمية
     document.querySelectorAll(".sp1, .sp2").forEach(button => {
         button.addEventListener("click", function () {
             let qtyElement = this.parentElement.querySelector("span:nth-child(2)");
@@ -183,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    updateCartTotal(); // حساب الإجمالي عند تحميل الصفحة
+    updateCartTotal();  
 });
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -266,3 +263,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCartCount();
 });
+
