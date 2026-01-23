@@ -559,7 +559,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   await renderBestSellerAndRelated();
   await renderProductDetails();
 
-  // تحديث عدد السلة عند التحميل
   updateCartCount();
 });
+
 
