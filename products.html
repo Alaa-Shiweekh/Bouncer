@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store — Bouncer</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav" role="navigation">
+  <div class="container">
+    <div class="nav-utils">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">
+          <span id="selected-lang">EN</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="lang-option" data-value="EN">EN</a>
+          <a href="#" class="lang-option" data-value="AR">AR</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">
+          <span id="selected-currency">USD</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="currency-option" data-value="USD">USD</a>
+          <a href="#" class="currency-option" data-value="EGP">EGP</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="nav-search-wrap" id="navSearchWrap">
+        <input type="text" id="navSearchInput" placeholder="Search products..." autocomplete="off">
+        <button class="nav-search-close" id="navSearchClose">&times;</button>
+      </div>
+      <button class="nav-action-btn" id="searchToggleBtn"><img src="assets/search-icon.svg" alt="Search"></button>
+      <a href="#" class="nav-action-btn"><img src="assets/profile_close_2.svg" alt="Profile"><span>My Profile</span></a>
+      <button class="nav-action-btn cart-nav-btn"><img src="assets/bag_3.svg" alt="Cart"><span class="cart-badge">0 items</span></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div id="navMobilePanel" class="nav-mobile-menu">
+    <button class="nav-action-btn cart-nav-btn" style="width:100%;justify-content:flex-start;padding:12px 16px;">
+      <img src="assets/bag_3.svg" alt=""> <span class="cart-badge">0 items</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="main-header">
+  <a href="HomePage.html" class="brand-title">BOUNCER</a>
+  <nav class="main-nav" id="mainNav">
+    <a href="HomePage.html" class="main-nav-link">Home</a>
+    <a href="products.html?category=all" class="main-nav-link" data-cat="all">Store</a>
+    <a href="products.html?category=electronics" class="main-nav-link" data-cat="electronics">Electronics</a>
+    <a href="products.html?category=jewelery" class="main-nav-link" data-cat="jewelery">Jewelery</a>
+    <a href="products.html?category=men's clothing" class="main-nav-link" data-cat="mens">Men's Clothing</a>
+    <a href="products.html?category=women's clothing" class="main-nav-link" data-cat="womens">Women's Clothing</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <a href="HomePage.html">Home</a>
+  <span class="sep">&rsaquo;</span>
+  <span class="current" id="categoryLabel">Products</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="store-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="store-sidebar" id="storeSidebar">
+
+    <!-- Mobile sidebar toggle (shown on small) -->
+    <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close filters">&times;</button>
+
+    <div class="sidebar-section">
+      <h5>Accessories</h5>
+      <ul class="sidebar-list">
+        <li><span>Apple Car</span><span class="count">2</span></li>
+        <li><span>Airport &amp; Wireless</span><span class="count">48</span></li>
+        <li><span>Cables &amp; Docks</span><span class="count">14</span></li>
+        <li><span>Cases &amp; Films</span><span class="count">15</span></li>
+        <li><span>Charging Devices</span><span class="count">23</span></li>
+        <li><span>Connected Home</span><span class="count">1</span></li>
+        <li><span>Headphones</span><span class="count">95</span></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h5>Price Range</h5>
+      <div class="price-range-display">
+        <span id="priceMin">$0</span> &mdash; <span id="priceMax">$1000</span>
+      </div>
+      <input type="range" id="priceRange" min="0" max="1000" value="1000" step="10">
+    </div>
+
+    <div class="sidebar-section">
+      <h5>Color</h5>
+      <div class="color-palette">
+        <label class="color-swatch blue" title="Blue"><input type="radio" name="color" value="blue" checked></label>
+        <label class="color-swatch red" title="Red"><input type="radio" name="color" value="red"></label>
+        <label class="color-swatch black" title="Black"><input type="radio" name="color" value="black"></label>
+        <label class="color-swatch yellow" title="Yellow"><input type="radio" name="color" value="yellow"></label>
+        <label class="color-swatch pink" title="Pink"><input type="radio" name="color" value="pink"></label>
+        <label class="color-swatch beige" title="Beige"><input type="radio" name="color" value="beige"></label>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <h5>Brand</h5>
+      <ul class="sidebar-list">
+        <li><span>Apple</span><span class="count">99</span></li>
+        <li><span>LG</span><span class="count">99</span></li>
+        <li><span>Samsung</span><span class="count">99</span></li>
+        <li><span>Siemens</span><span class="count">99</span></li>
+      </ul>
+      <a href="#" class="sidebar-more">View All</a>
+    </div>
+
+  </aside>
+
+  <!-- PRODUCT AREA -->
+  <main class="store-main">
+
+    <!-- Promo banner -->
+    <div class="promo-banner">
+      <div class="promo-text">
+        <h2>iPhone 8</h2>
+        <p>Performance and design. Taken right to the edge.</p>
+        <a href="product.html" class="promo-link">Shop Now</a>
+      </div>
+      <img src="assets/pic3.png" alt="iPhone 8" class="promo-img">
+    </div>
+
+    <!-- Sort / count bar -->
+    <div class="store-bar">
+      <div class="bar-left">
+        <button class="sidebar-toggle-btn" id="sidebarToggle">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M1 3h14M4 8h8M7 13h2"/>
+          </svg>
+          Filters
+        </button>
+        <span id="itemCount" class="item-count">Loading...</span>
+      </div>
+      <div class="bar-right">
+        <label for="sortSelect" class="sort-label">Sort by</label>
+        <select id="sortSelect">
+          <option value="default">Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name">Name A-Z</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="products-grid" id="productsGrid" aria-live="polite">
+      <!-- JS rendered -->
+    </div>
+
+    <!-- Pagination -->
+    <nav class="pagination-bar" id="paginationBar" aria-label="Product pages">
+      <!-- JS rendered -->
+    </nav>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>BOUNCER</h2>
+        <p>Your one-stop destination for premium electronics, clothing, and accessories.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Follow Us</h5>
+        <div class="footer-social">
+          <a href="#"><img src="assets/facebook.svg" alt="Facebook"></a>
+          <a href="#"><img src="assets/twitter.svg" alt="Twitter"></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <p>4578 Marmora Road, Glasgow<br>Phone: 0123-456-789<br>Email: support@bouncer.com</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-col"><h6>Information</h6><p>About Us</p><p>Privacy Policy</p><p>Terms</p></div>
+      <div class="footer-links-col"><h6>Service</h6><p>About Us</p><p>Privacy Policy</p><p>Terms</p></div>
+      <div class="footer-links-col"><h6>Extras</h6><p>About Us</p><p>Privacy Policy</p><p>Terms</p></div>
+      <div class="footer-links-col"><h6>My Account</h6><p>Profile</p><p>Orders</p><p>Wishlist</p></div>
+      <div class="footer-links-col"><h6>Useful Links</h6><p>Blog</p><p>FAQ</p><p>Contact</p></div>
+      <div class="footer-links-col"><h6>Our Offers</h6><p>Deals</p><p>Bundles</p><p>Clearance</p></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Bouncer Store. All rights reserved.</span>
+      <div class="payment-icons">
+        <img src="assets/Group 32.svg" alt=""><img src="assets/Group 19.svg" alt="">
+        <img src="assets/Paypal.svg" alt="PayPal"><img src="assets/visa.png" alt="Visa">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script src="products.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

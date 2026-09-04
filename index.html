@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bouncer — Tech Store</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="HomePage.css">
+</head>
+<body>
+
+<!-- ====================================================
+     NEWSLETTER POPUP
+     ==================================================== -->
+<div id="overlay" role="presentation"></div>
+
+<dialog id="popup" aria-modal="true" aria-labelledby="popup-title">
+  <button class="popup-close" id="popupClose" aria-label="Close newsletter popup">&times;</button>
+  <div class="popup-content">
+    <div class="popup-text">
+      <h2 id="popup-title">Stay in the Loop</h2>
+      <p>Get exclusive deals and product launches straight to your inbox.</p>
+      <div class="popup-input-group">
+        <input type="email" id="popupEmail" placeholder="Enter your email" autocomplete="email">
+        <button id="popupSubscribe">Subscribe</button>
+      </div>
+      <label class="popup-no-show">
+        <input type="checkbox" id="dontShow"> Don't show again
+      </label>
+    </div>
+    <div class="popup-image">
+      <img src="assets/img.png" alt="Newsletter">
+    </div>
+  </div>
+</dialog>
+
+<!-- ====================================================
+     TOP NAV
+     ==================================================== -->
+<nav class="top-nav" role="navigation" aria-label="Utility navigation">
+  <div class="container">
+    <!-- Left: lang + currency -->
+    <div class="nav-utils">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-haspopup="true">
+          <span id="selected-lang">EN</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="lang-option" data-value="EN">EN</a>
+          <a href="#" class="lang-option" data-value="AR">AR</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-haspopup="true">
+          <span id="selected-currency">USD</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="currency-option" data-value="USD">USD</a>
+          <a href="#" class="currency-option" data-value="EGP">EGP</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: actions -->
+    <div class="nav-actions">
+      <!-- Search field (hidden until triggered) -->
+      <div class="nav-search-wrap" id="navSearchWrap">
+        <input type="text" id="navSearchInput" placeholder="Search products..." autocomplete="off">
+        <button class="nav-search-close" id="navSearchClose" aria-label="Close search">&times;</button>
+      </div>
+
+      <button class="nav-action-btn" id="searchToggleBtn" aria-label="Open search">
+        <img src="assets/search-icon.svg" alt="Search">
+      </button>
+
+      <a href="#" class="nav-action-btn" href="#">
+        <img src="assets/profile_close_2.svg" alt="Profile">
+        <span>My Profile</span>
+      </a>
+
+      <button class="nav-action-btn cart-nav-btn" aria-label="Shopping cart">
+        <img src="assets/bag_3.svg" alt="Cart">
+        <span class="cart-badge">0 items</span>
+      </button>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile expanded panel -->
+  <div id="navMobilePanel" class="nav-mobile-menu">
+    <div class="nav-utils" style="flex-direction:column;padding:0 16px;gap:2px;">
+      <div class="nav-dropdown" style="width:100%;">
+        <button class="nav-dropdown-toggle" style="width:100%;justify-content:space-between;">
+          <span>Language: </span><span id="selected-lang-m">EN</span>
+        </button>
+        <div class="nav-dropdown-menu" style="position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:1px solid #f0f0f0;margin-top:4px;">
+          <a href="#" class="lang-option" data-value="EN">EN</a>
+          <a href="#" class="lang-option" data-value="AR">AR</a>
+        </div>
+      </div>
+    </div>
+    <button class="nav-action-btn" style="width:100%;justify-content:flex-start;padding:12px 16px;">
+      <img src="assets/profile_close_2.svg" alt="">
+      <span>My Profile</span>
+    </button>
+    <button class="nav-action-btn cart-nav-btn" style="width:100%;justify-content:flex-start;padding:12px 16px;">
+      <img src="assets/bag_3.svg" alt="">
+      <span class="cart-badge">0 items</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====================================================
+     MAIN HEADER / BRAND NAV
+     ==================================================== -->
+<header class="main-header" role="banner">
+  <a href="HomePage.html" class="brand-title">BOUNCER</a>
+  <nav class="main-nav" id="mainNav" aria-label="Primary navigation">
+    <a href="HomePage.html" class="main-nav-link active">Home</a>
+    <a href="products.html?category=all" class="main-nav-link">Store</a>
+    <a href="products.html?category=electronics" class="main-nav-link">Electronics</a>
+    <a href="products.html?category=jewelery" class="main-nav-link">Jewelery</a>
+    <a href="products.html?category=men's clothing" class="main-nav-link">Men's Clothing</a>
+    <a href="products.html?category=women's clothing" class="main-nav-link">Women's Clothing</a>
+  </nav>
+</header>
+
+<!-- ====================================================
+     HERO CAROUSEL
+     ==================================================== -->
+<section class="hero-carousel" aria-label="Featured products">
+  <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4500">
+    <div class="carousel-inner">
+
+      <!-- Slide 1 -->
+      <div class="carousel-item active slide-1">
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="slide-eyebrow">New Release</span>
+            <h2>iPhone X</h2>
+            <p>The future of the smartphone. Edge-to-edge display and Face ID bring a new era of personal tech.</p>
+            <a href="products.html?category=electronics" class="slide-cta">Shop Now</a>
+          </div>
+          <div class="slide-img">
+            <img src="assets/iphonex_spacegray.png" alt="iPhone X">
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item slide-2">
+        <div class="slide-content">
+          <div class="slide-text">
+            <span class="slide-eyebrow">Fan Favourite</span>
+            <h2>iPhone 6 Plus</h2>
+            <p>Performance and design. Taken right to the edge. A device that redefined the smartphone era.</p>
+            <a href="products.html?category=electronics" class="slide-cta">Explore More</a>
+          </div>
+          <div class="slide-img">
+            <img src="assets/pic3.png" alt="iPhone 6 Plus">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FEATURED PRODUCT BANNERS
+     ==================================================== -->
+<section class="feature-banners" aria-label="Featured categories">
+  <div class="banner-grid">
+
+    <div class="banner b-pink">
+      <div class="banner-text">
+        <h3>iPhone 6</h3>
+        <p>Elegantly thin. Powerfully smart.</p>
+        <span class="banner-price">$399</span>
+        <a href="products.html?category=electronics" class="banner-link">Shop Now</a>
+      </div>
+      <img src="assets/pic2.png" alt="iPhone 6">
+    </div>
+
+    <div class="banner b-light">
+      <img src="assets/Oculus-Rift-profile_grande.png" alt="Oculus Rift">
+      <div class="banner-text center">
+        <h3>Oculus Rift</h3>
+        <span class="banner-price">$349</span>
+      </div>
+    </div>
+
+    <div class="banner b-gray">
+      <div class="banner-text">
+        <h3>GoPro Hero 6</h3>
+        <p>Capture every moment. In stunning 4K.</p>
+        <span class="banner-price">$299</span>
+        <a href="products.html?category=electronics" class="banner-link">Shop Now</a>
+      </div>
+      <img src="assets/50051823_540375.png" alt="GoPro Hero 6">
+    </div>
+
+  </div>
+</section>
+
+<!-- ====================================================
+     BEST SELLER
+     ==================================================== -->
+<section class="best-seller-section" aria-label="Best sellers">
+  <div class="section-container">
+    <h2 class="section-title">Best Sellers</h2>
+    <p class="section-subtitle">Handpicked favourites across all categories</p>
+
+    <div class="filter-tabs" role="tablist">
+      <button class="filter-tab active" data-category="all" role="tab" aria-selected="true">All</button>
+      <button class="filter-tab" data-category="electronics" role="tab">Electronics</button>
+      <button class="filter-tab" data-category="jewelery" role="tab">Jewelery</button>
+      <button class="filter-tab" data-category="men's clothing" role="tab">Men's Clothing</button>
+      <button class="filter-tab" data-category="women's clothing" role="tab">Women's Clothing</button>
+    </div>
+
+    <div class="products-grid" id="bestSellerGrid" aria-live="polite">
+      <!-- Skeleton placeholders -->
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton sk-img"></div><div class="skeleton sk-line"></div><div class="skeleton sk-line short"></div></div>
+    </div>
+
+    <div class="load-more-wrap">
+      <button id="loadMoreBtn" class="btn-load-more" style="display:none;">Load More</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     SHOP NOW BANNER
+     ==================================================== -->
+<section class="shop-banner" aria-label="Shop now">
+  <div class="shop-banner-inner">
+    <div class="shop-banner-text">
+      <h2>iPhone 6 Plus</h2>
+      <p>Performance and design. Taken right to the edge. Experience the future in the palm of your hand.</p>
+      <a href="products.html?category=electronics" class="shop-banner-cta">Shop Now</a>
+    </div>
+    <div class="shop-banner-img">
+      <img src="assets/pic3.png" alt="iPhone 6 Plus">
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     SERVICE FEATURES
+     ==================================================== -->
+<section class="features-section" aria-label="Our promises">
+  <div class="section-container">
+    <div class="features-grid">
+
+      <div class="feature-item">
+        <img src="assets/shipping.svg" alt="" aria-hidden="true">
+        <h5>Free Shipping</h5>
+        <p>On all orders over $50. Fast, reliable delivery to your door with full tracking included.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="assets/refund.svg" alt="" aria-hidden="true">
+        <h5>100% Refund</h5>
+        <p>Not happy? Return within 30 days for a full refund, no questions asked. Your satisfaction is guaranteed.</p>
+      </div>
+
+      <div class="feature-item">
+        <img src="assets/support.svg" alt="" aria-hidden="true">
+        <h5>Support 24/7</h5>
+        <p>Our expert team is available around the clock to answer questions and solve any issues for you.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     LATEST NEWS
+     ==================================================== -->
+<section class="news-section" aria-label="Latest news">
+  <div class="section-container">
+    <h2 class="section-title">Latest News</h2>
+    <p class="section-subtitle">Stay informed with the latest from the tech world</p>
+    <div class="news-grid">
+
+      <article class="news-card">
+        <div class="news-img"><img src="assets/Rectangle 1 copy 25.png" alt="News 1" loading="lazy"></div>
+        <div class="news-body">
+          <time class="news-date">Jan 01, 2025</time>
+          <h5>The Future of Typesetting</h5>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry, pushing boundaries.</p>
+          <a href="blog_single.html" class="news-link">Read More</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img"><img src="assets/Rectangle 1 copy 26.png" alt="News 2" loading="lazy"></div>
+        <div class="news-body">
+          <time class="news-date">Jan 01, 2025</time>
+          <h5>New Standards in Design</h5>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry, pushing boundaries.</p>
+          <a href="blog_single.html" class="news-link">Read More</a>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="news-img"><img src="assets/Rectangle 1 copy 27.png" alt="News 3" loading="lazy"></div>
+        <div class="news-body">
+          <time class="news-date">Jan 01, 2025</time>
+          <h5>Trends in Modern Tech</h5>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry, pushing boundaries.</p>
+          <a href="blog_single.html" class="news-link">Read More</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     FEATURED PRODUCTS (horizontal cards)
+     ==================================================== -->
+<section class="featured-section" aria-label="Featured products">
+  <div class="section-container">
+    <h2 class="section-title">Featured Products</h2>
+    <p class="section-subtitle">Our top picks this season</p>
+    <div class="featured-grid" id="featuredGrid">
+      <!-- JS rendered -->
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================
+     SEARCH BAR
+     ==================================================== -->
+<section class="search-bar-section" aria-label="Search">
+  <div class="search-bar-wrap">
+    <input type="search" id="globalSearch" placeholder="Search for products..." autocomplete="off" aria-label="Search products">
+    <button id="globalSearchBtn">Search</button>
+  </div>
+</section>
+
+<!-- ====================================================
+     FOOTER
+     ==================================================== -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>BOUNCER</h2>
+        <p>Your one-stop destination for premium electronics, clothing, and accessories. Quality products, delivered fast.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Follow Us</h5>
+        <p>Connect with us on social media for the latest updates and exclusive deals.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><img src="assets/facebook.svg" alt="Facebook"></a>
+          <a href="#" aria-label="Twitter"><img src="assets/twitter.svg" alt="Twitter"></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <p>4578 Marmora Road, Glasgow D04 89GR<br>
+           Phone: 0123-456-789<br>
+           Email: support@bouncer.com</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-links-col">
+        <h6>Information</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+      <div class="footer-links-col">
+        <h6>Service</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+      <div class="footer-links-col">
+        <h6>Extras</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+      <div class="footer-links-col">
+        <h6>My Account</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+      <div class="footer-links-col">
+        <h6>Useful Links</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+      <div class="footer-links-col">
+        <h6>Our Offers</h6>
+        <p>About Us</p><p>Information</p><p>Privacy Policy</p><p>Terms & Conditions</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Bouncer Store. All rights reserved.</span>
+      <div class="payment-icons">
+        <img src="assets/Group 32.svg" alt="Payment method">
+        <img src="assets/Group 19.svg" alt="Payment method">
+        <img src="assets/Paypal.svg" alt="PayPal">
+        <img src="assets/visa.png" alt="Visa">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script src="HomePage.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

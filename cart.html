@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Bouncer</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="container">
+    <div class="nav-utils">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">
+          <span id="selected-lang">EN</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="lang-option" data-value="EN">EN</a>
+          <a href="#" class="lang-option" data-value="AR">AR</a>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-toggle">
+          <span id="selected-currency">USD</span>
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="#" class="currency-option" data-value="USD">USD</a>
+          <a href="#" class="currency-option" data-value="EGP">EGP</a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <div class="nav-search-wrap" id="navSearchWrap">
+        <input type="text" id="navSearchInput" placeholder="Search products..." autocomplete="off">
+        <button class="nav-search-close" id="navSearchClose">&times;</button>
+      </div>
+      <button class="nav-action-btn" id="searchToggleBtn"><img src="assets/search-icon.svg" alt="Search"></button>
+      <a href="#" class="nav-action-btn"><img src="assets/profile_close_2.svg" alt="Profile"><span>My Profile</span></a>
+      <button class="nav-action-btn cart-nav-btn"><img src="assets/bag_3.svg" alt="Cart"><span class="cart-badge">0 items</span></button>
+    </div>
+    <button class="nav-hamburger" id="navHamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div id="navMobilePanel" class="nav-mobile-menu">
+    <button class="nav-action-btn cart-nav-btn" style="width:100%;justify-content:flex-start;padding:12px 16px;">
+      <img src="assets/bag_3.svg" alt=""><span class="cart-badge">0 items</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header class="main-header">
+  <a href="HomePage.html" class="brand-title">BOUNCER</a>
+  <nav class="main-nav">
+    <a href="HomePage.html" class="main-nav-link">Home</a>
+    <a href="products.html?category=all" class="main-nav-link">Store</a>
+    <a href="products.html?category=electronics" class="main-nav-link">Electronics</a>
+    <a href="products.html?category=jewelery" class="main-nav-link">Jewelery</a>
+    <a href="products.html?category=men's clothing" class="main-nav-link">Men's Clothing</a>
+    <a href="products.html?category=women's clothing" class="main-nav-link">Women's Clothing</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <a href="HomePage.html">Home</a>
+  <span class="sep">&rsaquo;</span>
+  <span class="current">Cart</span>
+</div>
+
+<!-- CART CONTENT -->
+<div class="cart-page-layout">
+
+  <!-- Cart Table -->
+  <div class="cart-main">
+    <div id="cartBody">
+      <!-- JS rendered -->
+    </div>
+
+    <div class="cart-actions">
+      <a href="products.html?category=all" class="btn-continue">Continue Shopping</a>
+      <button class="btn-clear" id="clearCartBtn">Clear Cart</button>
+    </div>
+  </div>
+
+  <!-- Summary panel -->
+  <aside class="cart-summary">
+    <h3>Order Summary</h3>
+
+    <div class="coupon-row">
+      <input type="text" id="couponInput" placeholder="Enter voucher code">
+      <button id="applyVoucher">Apply</button>
+    </div>
+
+    <div class="summary-rows">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotalEl">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span id="shippingEl">$20.00</span>
+      </div>
+      <div class="summary-row" id="discountRow" style="display:none;">
+        <span>Discount</span>
+        <span id="discountEl" style="color:var(--success)">-$0.00</span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span id="totalEl">$0.00</span>
+      </div>
+    </div>
+
+    <button class="btn-checkout" id="checkoutBtn">Proceed to Checkout</button>
+
+    <div class="payment-icons" style="justify-content:flex-start;margin-top:18px;">
+      <img src="assets/Group 32.svg" alt="">
+      <img src="assets/Group 19.svg" alt="">
+      <img src="assets/Paypal.svg" alt="PayPal">
+      <img src="assets/visa.png" alt="Visa">
+    </div>
+  </aside>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h2>BOUNCER</h2>
+        <p>Your one-stop destination for premium electronics, clothing, and accessories.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Follow Us</h5>
+        <div class="footer-social">
+          <a href="#"><img src="assets/facebook.svg" alt="Facebook"></a>
+          <a href="#"><img src="assets/twitter.svg" alt="Twitter"></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <p>4578 Marmora Road, Glasgow<br>Phone: 0123-456-789<br>Email: support@bouncer.com</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-links-col"><h6>Information</h6><p>About Us</p><p>Privacy Policy</p></div>
+      <div class="footer-links-col"><h6>Service</h6><p>About Us</p><p>Privacy Policy</p></div>
+      <div class="footer-links-col"><h6>Extras</h6><p>About Us</p><p>Privacy Policy</p></div>
+      <div class="footer-links-col"><h6>My Account</h6><p>Profile</p><p>Orders</p></div>
+      <div class="footer-links-col"><h6>Useful Links</h6><p>Blog</p><p>FAQ</p></div>
+      <div class="footer-links-col"><h6>Our Offers</h6><p>Deals</p><p>Bundles</p></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Bouncer Store. All rights reserved.</span>
+      <div class="payment-icons">
+        <img src="assets/Group 32.svg" alt=""><img src="assets/Group 19.svg" alt="">
+        <img src="assets/Paypal.svg" alt="PayPal"><img src="assets/visa.png" alt="Visa">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script src="cart.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
